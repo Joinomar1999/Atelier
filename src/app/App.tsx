@@ -6,13 +6,13 @@ export function App() {
     <div className="shell">
       <header className="topbar">
         <span className="brand">The Atelier</span>
-        <span className="tag">Phase 1 · blockout</span>
+        <span className="tag">Draft world · static characters</span>
       </header>
       <main className="stage">
         <Atelier />
       </main>
       <aside className="legend" aria-label="Areas">
-        <h2>Areas (placeholder)</h2>
+        <h2>Areas</h2>
         <ul>
           {AREAS.map((a) => (
             <li key={a.id}>
@@ -22,8 +22,9 @@ export function App() {
           ))}
         </ul>
         <p className="note">
-          Grey-box placeholders. No character is shown yet: the first character is Nora,
-          added in phase 2 from approved models only.
+          Grey-box areas. Six draft characters stand in their areas as static placements.
+          They are procedural drafts, not approved sculpts, and they do not reflect agent
+          state yet (phase 5).
         </p>
       </aside>
     </div>
