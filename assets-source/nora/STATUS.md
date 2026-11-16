@@ -1,5 +1,8 @@
 # Nora: model status
 
+Latest revision: v4 (`review-v4.png`). Mantle is a folded shell with a wavy hem and gold brooch. Hood shell and dark glass eyes with gold rims are in.
+Gaps still open: the hood reads as bare head from the front, the mantle is stiff, the limbs are thin, and the body lacks the sheet's neck and chest detail. The cape still needs a real sculpt.
+
 **First-pass draft. Not approved. Not for rigging yet.**
 
 Built procedurally in Blender 4.0 by `build_nora.py`, from proportions in the approved design sheet.
