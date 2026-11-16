@@ -1,27 +1,47 @@
 import { useState, type FormEvent } from "react";
+import { invoke } from "@tauri-apps/api/core";
 import { AGENTS } from "../agents/registry";
 import { useAgents } from "../agents/store";
 
-// Queues a task for an agent. It is stored locally and does NOT reach a real agent yet:
-// the provider adapter that forwards commands is built in phase 7.
+const inTauri = () => typeof window !== "undefined" && "__TAURI_INTERNALS__" in window;
+
+// Queues a command for an agent. It shows on this screen at once, and is also written to
+// commands/inbox.jsonl in the repo and pushed, so the agent side can read it.
 export function CommandBar() {
   const applyEvent = useAgents((s) => s.applyEvent);
   const [agentId, setAgentId] = useState(AGENTS[0].id);
   const [text, setText] = useState("");
+  const [status, setStatus] = useState<string>("");
+  const [busy, setBusy] = useState(false);
 
-  function send(e: FormEvent) {
+  async function send(e: FormEvent) {
     e.preventDefault();
     const task = text.trim();
-    if (!task) return;
+    if (!task || busy) return;
     const now = Date.now();
-    applyEvent({ id: `cmd-${now}-${agentId}`, agentId, timestamp: now, state: "queued", task }, "local");
+    const id = `cmd-${now}-${agentId}`;
+    const record = { id, agentId, task, createdAt: now };
+    applyEvent({ id, agentId, timestamp: now, state: "queued", task }, "local");
     setText("");
+    if (!inTauri()) {
+      setStatus("Shown here only: this is the browser preview, not the desktop app.");
+      return;
+    }
+    setBusy(true);
+    setStatus("Sending to the repo...");
+    try {
+      await invoke<string>("queue_command", { line: JSON.stringify(record) });
+      setStatus("Sent. The agent side reads it from the repo.");
+    } catch (err) {
+      setStatus(`Shown here, but not sent: ${String(err)}`);
+    } finally {
+      setBusy(false);
+    }
   }
 
   return (
     <form className="command" onSubmit={send}>
       <h2>Command</h2>
-      <p className="sim-tag">Stored on this app only. Not sent to a real agent yet.</p>
       <select aria-label="Agent" value={agentId} onChange={(e) => setAgentId(e.target.value)}>
         {AGENTS.map((a) => (
           <option key={a.id} value={a.id}>{a.name} ({a.role})</option>
@@ -35,7 +55,8 @@ export function CommandBar() {
         onChange={(e) => setText(e.target.value)}
         rows={3}
       />
-      <button type="submit" disabled={!text.trim()}>Queue task</button>
+      <button type="submit" disabled={!text.trim() || busy}>Send command</button>
+      {status && <p className="sim-tag" role="status">{status}</p>}
     </form>
   );
 }
