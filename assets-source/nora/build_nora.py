@@ -30,10 +30,10 @@ def mat(name, base, rough=0.5, metal=0.0, coat=0.0, emit=None, alpha=1.0):
     return m
 
 M_IVORY    = mat("Ivory ceramic",  (0.93, 0.89, 0.80), rough=0.32, coat=0.25)
-M_SAND     = mat("Sand fabric",    (0.80, 0.74, 0.62), rough=0.9)
+M_SAND     = mat("Slate mantle",   (0.36, 0.38, 0.42), rough=0.75)
 M_CHAMP    = mat("Champagne metal",(0.82, 0.64, 0.38), rough=0.25, metal=1.0)
 M_GRAPH    = mat("Graphite",       (0.13, 0.13, 0.14), rough=0.4, metal=0.4)
-M_BLUE     = mat("Dusty blue",     (0.45, 0.58, 0.68), rough=0.3, emit=(0.2, 0.3, 0.4))
+M_BLUE     = mat("Iris dark blue", (0.10, 0.16, 0.22), rough=0.2)
 M_PUPIL    = mat("Pupil",          (0.02, 0.02, 0.03), rough=0.2)
 M_GLASS    = mat("Eye glass",      (0.95, 0.97, 1.0), rough=0.02, coat=1.0)
 M_HIGHLIGHT= mat("Highlight",      (1.0, 1.0, 1.0), rough=0.1, emit=(1.0, 1.0, 1.0))
