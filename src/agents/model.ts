@@ -7,6 +7,7 @@ export type AgentState =
   | "executing"
   | "collaborating"
   | "waiting_input"
+  | "queued"
   | "completed"
   | "failed"
   | "unknown";
@@ -32,5 +33,5 @@ export interface AgentSnapshot {
   artifact?: { name: string };
   error?: string;
   lastTimestamp: number;
-  source: "simulated" | "claude";
+  source: "simulated" | "claude" | "local";
 }

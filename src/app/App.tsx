@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { Atelier } from "../world/Atelier";
 import { AREAS } from "../world/areas";
 import { AgentPanel } from "./AgentPanel";
+import { CommandBar } from "./CommandBar";
 import { useAgents } from "../agents/store";
 import { startSimulated } from "../agents/adapters/simulated/simulated";
 
@@ -26,6 +27,7 @@ export function App() {
         <Atelier />
       </main>
       <aside className="side">
+        <CommandBar />
         <AgentPanel simulated={USE_SIMULATED} />
         <div className="areas">
           <h2>Areas</h2>

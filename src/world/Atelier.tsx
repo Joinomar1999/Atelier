@@ -2,6 +2,7 @@ import { Canvas } from "@react-three/fiber";
 import { AREAS } from "./areas";
 import { CHARACTERS } from "./characters";
 import { DraftCharacter } from "./DraftCharacter";
+import { Controls } from "./Controls";
 
 // Blockout areas with draft characters placed (static, no agent state yet).
 export function Atelier() {
@@ -11,6 +12,7 @@ export function Atelier() {
       shadows
       style={{ width: "100%", height: "100%" }}
     >
+      <Controls />
       <color attach="background" args={["#efe9df"]} />
       <hemisphereLight args={["#ffffff", "#8a7a60", 0.8]} />
       <directionalLight position={[6, 12, 6]} intensity={0.6} castShadow />

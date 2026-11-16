@@ -46,3 +46,10 @@ html, body, #root { height: 100%; margin: 0; background: var(--bg); color: var(-
 .sim-tag { font-size: 0.75rem; color: var(--muted); margin: 0 0 8px; }
 .areas ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 6px; }
 .areas li { display: flex; align-items: center; gap: 8px; font-size: 0.9rem; }
+
+.command { border: 1px solid var(--line); border-radius: 8px; padding: 12px; display: grid; gap: 8px; }
+.command h2 { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); margin: 0; font-weight: 600; }
+.command select, .command textarea { font: inherit; font-size: 0.85rem; padding: 6px 8px; border: 1px solid var(--line); border-radius: 6px; background: var(--bg); color: var(--fg); width: 100%; box-sizing: border-box; }
+.command textarea { resize: vertical; }
+.command button { font: inherit; font-size: 0.85rem; padding: 7px 12px; border-radius: 6px; border: 1px solid var(--accent); background: var(--accent); color: #fff; cursor: pointer; }
+.command button:disabled { opacity: 0.5; cursor: default; }

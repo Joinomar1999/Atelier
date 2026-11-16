@@ -8,6 +8,7 @@ export const STATE_LABEL: Record<AgentState, string> = {
   executing: "Executing",
   collaborating: "Collaborating",
   waiting_input: "Waiting for you",
+  queued: "Queued",
   completed: "Completed",
   failed: "Blocked or failed",
   unknown: "No recent update",
@@ -22,6 +23,7 @@ export function areaFor(state: AgentState): AreaId {
     case "completed": return "gallery";
     case "waiting_input": return "hub";     // stops and faces the user at the front of the hub
     case "failed": return "hub";            // stops the activity and shows the problem
+    case "queued": return "garden";          // waits until it is picked up
     case "idle":
     case "unknown":
     default: return "garden";
