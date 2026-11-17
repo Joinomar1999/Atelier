@@ -3,31 +3,29 @@ import { AREAS } from "./areas";
 import { CHARACTERS } from "./characters";
 import { DraftCharacter } from "./DraftCharacter";
 import { Controls } from "./Controls";
+import { Pieces } from "./Pieces";
 
-// Blockout areas with draft characters placed (static, no agent state yet).
+// The flat world: one flat ground, flat zones for each area, and the things built so far.
 export function Atelier() {
   return (
-    <Canvas
-      camera={{ position: [0, 6.5, 9.5], fov: 40 }}
-      shadows
-      style={{ width: "100%", height: "100%" }}
-    >
+    <Canvas camera={{ position: [0, 17, 14], fov: 42 }} style={{ width: "100%", height: "100%" }}>
       <Controls />
       <color attach="background" args={["#efe9df"]} />
-      <hemisphereLight args={["#ffffff", "#8a7a60", 0.8]} />
-      <directionalLight position={[6, 12, 6]} intensity={0.6} castShadow />
-      <mesh rotation={[-Math.PI / 2, 0, 0]} receiveShadow>
-        <circleGeometry args={[12, 64]} />
-        <meshStandardMaterial color="#d8cdb8" roughness={0.9} />
+      <ambientLight intensity={1.3} />
+      <directionalLight position={[6, 12, 6]} intensity={0.5} />
+      <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -0.01, 0]}>
+        <planeGeometry args={[60, 60]} />
+        <meshLambertMaterial color="#e7dfcd" />
       </mesh>
+      {AREAS.map((a) => (
+        <mesh key={a.id} rotation={[-Math.PI / 2, 0, 0]} position={[a.position[0], 0.003, a.position[2]]}>
+          <circleGeometry args={[a.size[0], 6]} />
+          <meshLambertMaterial color={a.color} flatShading />
+        </mesh>
+      ))}
+      <Pieces />
       {CHARACTERS.map((c) => (
         <DraftCharacter key={c.id} c={c} />
-      ))}
-      {AREAS.map((a) => (
-        <mesh key={a.id} position={a.position} castShadow receiveShadow>
-          <boxGeometry args={a.size} />
-          <meshStandardMaterial color={a.color} roughness={0.8} />
-        </mesh>
       ))}
     </Canvas>
   );

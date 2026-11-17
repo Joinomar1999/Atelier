@@ -9,12 +9,12 @@ export function Controls() {
 
   useEffect(() => {
     const c = new OrbitControls(camera, gl.domElement);
-    c.target.set(0, 0.6, 0);
+    c.target.set(0, 0, 0);
     c.enableDamping = true;
     c.dampingFactor = 0.08;
     c.minDistance = 3;
-    c.maxDistance = 24;
-    c.maxPolarAngle = Math.PI * 0.47;
+    c.maxDistance = 40;
+    c.maxPolarAngle = Math.PI * 0.42;
     c.update();
     ref.current = c;
     return () => { c.dispose(); ref.current = null; };

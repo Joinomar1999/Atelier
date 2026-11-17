@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { Atelier } from "../world/Atelier";
 import { AREAS } from "../world/areas";
 import { AgentPanel } from "./AgentPanel";
-import { CommandBar } from "./CommandBar";
+import { ChatPanel } from "./ChatPanel";
 import { useAgents } from "../agents/store";
 import { startSimulated } from "../agents/adapters/simulated/simulated";
 
@@ -21,13 +21,13 @@ export function App() {
     <div className="shell">
       <header className="topbar">
         <span className="brand">The Atelier</span>
-        <span className="tag">Draft world · {USE_SIMULATED ? "simulated agents" : "live agents"}</span>
+        <span className="tag">Flat world · {USE_SIMULATED ? "simulated agents" : "live agents"}</span>
       </header>
       <main className="stage">
         <Atelier />
       </main>
       <aside className="side">
-        <CommandBar />
+        <ChatPanel />
         <AgentPanel simulated={USE_SIMULATED} />
         <div className="areas">
           <h2>Areas</h2>

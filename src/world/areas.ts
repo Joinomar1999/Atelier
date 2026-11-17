@@ -1,4 +1,4 @@
-// The five areas from the brief. Positions are placeholder blockout coordinates.
+// The five areas as flat zones on the ground. Positions are on the flat world, in metres.
 export type AreaId = "workshop" | "library" | "hub" | "garden" | "gallery";
 
 export interface Area {
@@ -6,13 +6,13 @@ export interface Area {
   label: string;
   color: string;
   position: [number, number, number];
-  size: [number, number, number];
+  size: [number, number, number];   // [radius, unused, unused]: zones are round and flat
 }
 
 export const AREAS: Area[] = [
-  { id: "workshop", label: "Workshop", color: "#b89268", position: [-4, 0.4, -2], size: [4, 0.8, 3] },
-  { id: "library", label: "Library", color: "#8c7a63", position: [4, 0.4, -2], size: [4, 0.8, 3] },
-  { id: "hub", label: "Collaboration Hub", color: "#a9a195", position: [0, 0.3, 0], size: [3.5, 0.6, 3.5] },
-  { id: "garden", label: "Garden", color: "#7d8f6c", position: [-4, 0.2, 3.5], size: [4, 0.4, 3] },
-  { id: "gallery", label: "Gallery", color: "#c9c1b3", position: [4, 0.5, 3.5], size: [4, 1, 3] },
+  { id: "library", label: "Library", color: "#d8c9a8", position: [-8, 0, -6], size: [2.2, 0, 0] },
+  { id: "workshop", label: "Workshop", color: "#e6cba5", position: [8, 0, -6], size: [2.2, 0, 0] },
+  { id: "hub", label: "Collaboration Hub", color: "#d5d0c8", position: [0, 0, -9], size: [2.2, 0, 0] },
+  { id: "garden", label: "Garden", color: "#c6d3b1", position: [-8, 0, 6], size: [2.2, 0, 0] },
+  { id: "gallery", label: "Gallery", color: "#e2dcc9", position: [8, 0, 6], size: [2.2, 0, 0] },
 ];
