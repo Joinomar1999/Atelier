@@ -14,7 +14,7 @@ export const AGENTS: AgentDef[] = [
   {
     id: "ari", name: "Ari", role: "Senior manager", characterId: "ari",
     focus: "Coordinates the team and contacts Omar",
-    sessionId: "session_01MMkfFC9EEEKBVkXaxFr2Zw",
+    sessionId: "session_01MMkfF8C1ovczUD7Ve88TYa",
   },
   {
     id: "otto", name: "Otto", role: "Unreal Engine programmer", characterId: "otto",
